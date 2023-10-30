@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { storage } from '../store/firebaseSlice';
 import { getDownloadURL, ref } from 'firebase/storage';
-import LoadingImg from '../assets/loadingimg.png';
+import LoadingImg from '../assets/Loadingimg.png';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
