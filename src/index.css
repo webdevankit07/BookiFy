@@ -1,0 +1,129 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+
+.card {
+    max-width: 350px;
+}
+.order_card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    max-width: 100%;
+    margin-top: 2rem;
+}
+
+.card img {
+    height: 300px;
+}
+
+.card-text {
+    height: 100px;
+}
+.card-text span {
+    font-weight: bold;
+}
+
+.books_not_found {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777777;
+}
+
+.books_not_found span {
+    color: rgb(50, 50, 50);
+}
+
+.order_card-body {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/*! .........Details Page.....  */
+.detailSection > h2 {
+    margin-left: 1rem;
+    font-weight: 800;
+}
+
+.detailSection > p {
+    color: rgb(100, 100, 100);
+}
+
+.detailSection label {
+    font-weight: bold;
+}
+
+.detailSection input {
+    width: 300px !important;
+}
+
+.detailSection button {
+    width: 300px;
+}
+
+/*! .......OrderCard.........  */
+
+/*! Responsive  */
+@media screen and (max-width: 500px) {
+    .books_not_found {
+        font-size: 1rem !important;
+    }
+
+    .order_card {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    /* .card-img-top {
+        width: 350px !important;
+    } */
+    .order_card-body {
+        width: 100%;
+    }
+
+    .detailPoster {
+        width: 100% !important;
+        height: 250px !important;
+    }
+
+    .detailSection > h2 {
+        font-size: 1rem;
+        margin-left: 1rem;
+    }
+
+    .detailSection > p {
+        font-size: 0.8rem;
+    }
+
+    .detailSection label,
+    .detailSection input,
+    .detailSection button {
+        margin-left: 1rem;
+    }
+
+    .orderCardPoster {
+        width: 100% !important;
+    }
+
+    .ownerImg {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .order_card {
+        padding: 1rem;
+    }
+
+    .orderCardPoster p {
+        font-size: 0.8rem;
+    }
+}

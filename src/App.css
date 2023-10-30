@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    font-family: 'Poppins', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+.flex {
+    display: flex;
+    gap: 1em;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.signUp-section {
+    display: grid;
+    place-items: center;
+    height: 95vh;
+    width: 100%;
+    /* background: #0f0c29; */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+}
+
+.register {
+    width: 100%;
+    max-width: 978px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    background-color: white;
+    border: 1px solid #e9ecef;
+    box-shadow: 1px 3px 10px #434343;
+    border-radius: 5px;
+}
+
+.input-section {
+    width: 100%;
+    height: 100%;
+}
+
+.input-section h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.input-section span {
+    font-size: 0.9rem;
+    display: inline-block;
+    color: #adb5bd;
+    text-align: center;
+}
+
+#form {
+    max-width: 320px;
+    width: 100vw;
+    margin: 2em auto;
+}
+
+#form > input,
+.btn {
+    border: 1px solid #e9ecef;
+    padding: 0.9em 1em;
+}
+
+#form > input {
+    font-size: 0.9rem;
+}
+
+#form > input:focus {
+    outline: none;
+}
+
+#form > input::placeholder {
+    color: rgb(186, 186, 186);
+}
+
+#form > .btn {
+    background-color: #003049;
+    color: #e9ecef;
+    font-size: 1em;
+    cursor: pointer;
+}
+.with-google {
+    position: relative;
+}
+.with-google-login {
+    position: absolute;
+    top: -5px;
+    left: 100px;
+    color: rgb(174, 174, 174);
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+}
+
+.google-btn {
+    border: 2px solid #fe7664;
+    background-color: #fff;
+    padding: 1rem 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.google-btn span {
+    color: #fe7664;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.register img {
+    width: 480px;
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.link a {
+    text-decoration: none;
+}
+
+.actionBtn {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: transparent;
+    font-weight: 500;
+    border: 2px solid #0b6ade;
+    color: #0b6ade;
+    border-radius: 5px;
+    transition: all 0.1s linear;
+}
+
+.actionBtn:hover {
+    background-color: #0b6ade;
+    color: white;
+}
+
+.actionBtn:active {
+    border-style: unset;
+}
+
+.searchSection {
+    position: relative;
+}
+
+.searchInput {
+    background-color: #fff;
+    color: black;
+    padding: 0.5rem 1rem 0.5rem 2.9rem;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 0.1rem;
+    left: 0.5rem;
+    font-size: 1.5rem;
+}
+
+@media screen and (width < 860px) {
+    .register img {
+        display: none;
+    }
+    .action-section {
+        flex-direction: column;
+        gap: 0 !important;
+    }
+
+    .actionBtn {
+        width: 200px;
+        margin: 1rem 0;
+    }
+
+    .searchSection {
+        display: none;
+    }
+
+    .signUp-section {
+        height: 80vh;
+        background: #fff;
+    }
+
+    .register {
+        box-shadow: none;
+        border: none;
+        margin-top: 5rem;
+    }
+}
