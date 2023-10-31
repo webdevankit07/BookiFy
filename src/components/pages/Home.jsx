@@ -1,5 +1,4 @@
-import { booksIDs_collections, cleanSearchText, firestore } from '../../store/firebaseSlice';
-import { useNavigate } from 'react-router-dom';
+import { booksIDs_collections, cleanSearchText, firestore, setPageLocation } from '../../store/firebaseSlice';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { collection, getDocs } from 'firebase/firestore';
@@ -9,22 +8,17 @@ const Home = () => {
     document.title = 'BookiFy - Home';
     const { login, searchItem } = useSelector((state) => state.firebaseApp);
     const [books, setBooks] = useState(null);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    // //! Checking User Login or Not...
-    // useEffect(() => {
-    //     if (!login) navigate('/login');
-    // }, [dispatch, login, navigate]);
 
     //! Retrieving listed Book Data from Firebase...
     const listOfAllBooks = async () => {
         const books = await getDocs(collection(firestore, 'books'));
         setBooks(books.docs);
-        dispatch(cleanSearchText());
     };
     useEffect(() => {
         listOfAllBooks();
+        dispatch(cleanSearchText());
+        dispatch(setPageLocation('home-Page'));
     }, []);
 
     //! register all booksIDs in GlobleState..

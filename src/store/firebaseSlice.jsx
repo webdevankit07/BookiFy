@@ -44,6 +44,7 @@ const fireBaseSLice = createSlice({
         booksIDs: null,
         allOrders: [],
         searchItem: '',
+        pageLocation: '',
     },
 
     reducers: {
@@ -80,6 +81,9 @@ const fireBaseSLice = createSlice({
         cleanSearchText: (state) => {
             state.searchItem = '';
         },
+        setPageLocation: (state, { payload }) => {
+            state.pageLocation = payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -109,5 +113,6 @@ export const {
     signInWithGoogle,
     setSearchItem,
     cleanSearchText,
+    setPageLocation,
 } = fireBaseSLice.actions;
 export { firebaseApp, firebaseAuth, googleProvider, firestore, storage };

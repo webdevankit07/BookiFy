@@ -1,8 +1,8 @@
 import { collection, getDocs } from 'firebase/firestore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { cleanOrders, cleanSearchText, firestore, setOrders } from '../../store/firebaseSlice';
+import { cleanOrders, cleanSearchText, firestore, setOrders, setPageLocation } from '../../store/firebaseSlice';
 import OrderCard from './OrderCard';
 
 const Orders = () => {
@@ -14,7 +14,8 @@ const Orders = () => {
         !login && navigate('/login');
     }, [login, navigate]);
 
-    useEffect(() => {
+    //! get my orders from firestore...
+    const getMyOrders = () => {
         if (booksIDs) {
             dispatch(cleanOrders());
             booksIDs.map(async (bookID) => {
@@ -22,10 +23,15 @@ const Orders = () => {
                 orders.docs[0] && dispatch(setOrders(orders.docs[0]));
             });
         }
+    };
+    useEffect(() => {
+        getMyOrders();
     }, [booksIDs, dispatch]);
 
+    //!clear search text...
     useEffect(() => {
         dispatch(cleanSearchText());
+        dispatch(setPageLocation('order-Page'));
     }, []);
 
     //! ALl user orders..
@@ -44,17 +50,20 @@ const Orders = () => {
         <>
             <div className='container'>
                 <h1 className='text-center mt-3'>Orders</h1>
-                {myOrders.map((order, i) => {
-                    const { name, qty, imageURL, userName, userEmail, userId, userPhotoURL, Price, ownerName } = order;
+                {myOrders.map((order) => {
+                    const { name, BookId, qty, imageURL, userName, userEmail, userId, userPhotoURL, Price, ownerName } = order;
+
                     return (
-                        <div key={i}>
+                        <div key={BookId}>
                             <OrderCard
                                 name={name}
+                                id={BookId}
+                                getMyOrders={getMyOrders}
                                 qty={qty}
                                 imageURL={imageURL}
                                 userName={userName}
                                 userEmail={userEmail}
-                                userId={userId}
+                                UserId={userId}
                                 userPhotoURL={userPhotoURL}
                                 price={Price}
                                 ownerName={ownerName}

@@ -7,7 +7,7 @@ import bookifyLogo from '../assets/books.png';
 import userLogo from '../assets/user.png';
 
 const Navbar = () => {
-    const { userName, login, userPhotoURL, searchItem } = useSelector((state) => state.firebaseApp);
+    const { userName, login, userPhotoURL, searchItem, pageLocation } = useSelector((state) => state.firebaseApp);
     const dispatch = useDispatch();
 
     //! LoggedOut Function..
@@ -75,17 +75,20 @@ const Navbar = () => {
                             )}
                         </ul>
                         <div className='action-section d-flex align-items-center gap-5'>
-                            <div className='searchSection'>
-                                <input
-                                    type='text'
-                                    className='searchInput'
-                                    value={searchItem}
-                                    onChange={(e) => dispatch(setSearchItem(e.target.value))}
-                                />
-                                <div className='searchIcon'>
-                                    <BiSearch />
+                            {pageLocation === ('home-Page' || 'order-Page') && (
+                                <div className='searchSection'>
+                                    <input
+                                        type='text'
+                                        className='searchInput'
+                                        value={searchItem}
+                                        onChange={(e) => dispatch(setSearchItem(e.target.value))}
+                                    />
+                                    <div className='searchIcon'>
+                                        <BiSearch />
+                                    </div>
                                 </div>
-                            </div>
+                            )}
+
                             <div className='authSection'>
                                 <Link to={!login && '/login'}>
                                     <button type='submit' className='actionBtn' onClick={login ? loggedOut : undefined}>

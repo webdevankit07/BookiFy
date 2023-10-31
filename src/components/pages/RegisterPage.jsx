@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { signInWithGoogle, signUpUserWithEmailPassword } from '../../store/firebaseSlice';
+import { setPageLocation, signInWithGoogle, signUpUserWithEmailPassword } from '../../store/firebaseSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import bgImg from '../../assets/bg_bookify.jpg';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -11,6 +11,10 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(setPageLocation('signUp-Page'));
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInUserWithEmailPassword, signInWithGoogle } from '../../store/firebaseSlice';
+import { setPageLocation, signInUserWithEmailPassword, signInWithGoogle } from '../../store/firebaseSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import bgImg from '../../assets/bg_bookify.jpg';
 import { FcGoogle } from 'react-icons/fc';
@@ -15,6 +15,7 @@ const Login = () => {
 
     useEffect(() => {
         if (login) navigate('/');
+        dispatch(setPageLocation('login-Page'));
     }, [login, navigate]);
 
     const handleSubmit = (e) => {

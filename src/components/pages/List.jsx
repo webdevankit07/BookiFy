@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { cleanSearchText, firestore, storage } from '../../store/firebaseSlice';
+import { cleanSearchText, firestore, setPageLocation, storage } from '../../store/firebaseSlice';
 import { addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes } from 'firebase/storage';
 
@@ -17,7 +17,11 @@ const List = () => {
     useEffect(() => {
         if (!login) navigate('/login');
     }, [navigate, login]);
-    dispatch(cleanSearchText());
+
+    useEffect(() => {
+        dispatch(cleanSearchText());
+        dispatch(setPageLocation('listing-Page'));
+    }, []);
 
     const setData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -1,6 +1,29 @@
+import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
 import PropTypes from 'prop-types';
+import { firestore } from '../../store/firebaseSlice';
+import { useSelector } from 'react-redux';
 
-const OrderCard = ({ name, qty, imageURL, userName, userEmail, userPhotoURL, price, ownerName }) => {
+const OrderCard = ({ name, id, qty, imageURL, userName, userEmail, userPhotoURL, price, ownerName, getMyOrders }) => {
+    const { userId } = useSelector((state) => state.firebaseApp);
+    // const navi
+
+    //! delete my orders from firestore...
+    const deleteOrder = async () => {
+        //! Querry collection of order from firestore...
+        const collectionRef = collection(firestore, 'books', id, 'orders');
+        const q = query(collectionRef, where('userId', '==', userId));
+        const querySnapshot = await getDocs(q);
+
+        //! finding document and delete...
+        querySnapshot.forEach(async (document) => {
+            const docRef = doc(firestore, 'books', id, 'orders', document.id);
+            await deleteDoc(docRef);
+        });
+
+        //! recole ordes..
+        getMyOrders();
+    };
+
     return (
         <>
             <div className='card order_card'>
@@ -21,6 +44,9 @@ const OrderCard = ({ name, qty, imageURL, userName, userEmail, userPhotoURL, pri
                             This Book has a tittle <span>{`"${name}"`}</span> and its sold by <span>{`"${userName}"`}</span> and this books costs Rs.{' '}
                             <span>{price}</span>
                         </p>
+                        <button className='btn btn-danger mt-3 px-10 py-2' onClick={deleteOrder}>
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>

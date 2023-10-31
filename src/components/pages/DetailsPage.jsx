@@ -1,10 +1,10 @@
 import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { firestore, storage } from '../../store/firebaseSlice';
+import { firestore, setPageLocation, storage } from '../../store/firebaseSlice';
 import { getDownloadURL, ref } from 'firebase/storage';
 import Loadingimg from '../../assets/DetailLoadingImg.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DetailsPage = () => {
     document.title = 'BookiFy - Book Details';
@@ -15,18 +15,22 @@ const DetailsPage = () => {
     const [imgLoading, setImgLoading] = useState(false);
     const { BookId } = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    //! we are not Logged in...
     if (!login) navigate('/login');
 
+    //! get Book details by bookId.....
     const getBookById = async () => {
         const book = await getDoc(doc(firestore, 'books', BookId));
         setBook(book.data());
     };
-
     useEffect(() => {
         getBookById();
+        dispatch(setPageLocation('details-Page'));
     }, []);
 
+    //! get full ImageUrl by image url of book....
     const getImageUrl = async () => {
         setImgLoading(true);
         const imgUrl = await getDownloadURL(ref(storage, book.imageURL));
@@ -37,11 +41,13 @@ const DetailsPage = () => {
         book && getImageUrl();
     }, [book]);
 
+    //! Place Order....
     const placeOrder = async () => {
         if (qty > 0) {
             await addDoc(collection(firestore, 'books', BookId, 'orders'), {
                 userName,
                 userId,
+                BookId,
                 userEmail,
                 userPhotoURL: book.userPhotoURL,
                 name: book.name,
