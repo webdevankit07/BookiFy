@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { cleanOrders, cleanSearchText, firestore, setOrders, setPageLocation } from '../../store/firebaseSlice';
 import OrderCard from './OrderCard';
-import { RxCross2 } from 'react-icons/rx';
 
 const Orders = () => {
     const { login, booksIDs, allOrders, userId, searchItem } = useSelector((state) => state.firebaseApp);
@@ -39,7 +38,7 @@ const Orders = () => {
     //! ALl user orders..
     const myOrders = allOrders
         .map((order) => order.data())
-        .filter((order) => order.userId === userId)
+        .filter((order) => order.userId === userId || order.userEmail)
         .filter(
             (order) =>
                 order.name.toLowerCase().split(' ').join('').includes(searchItem.toLowerCase().split(' ').join('')) ||
@@ -74,9 +73,6 @@ const Orders = () => {
                                 <div className='pdfSection' onClick={() => setPdfShow((prev) => !prev)}>
                                     <div className='pdf'>
                                         <embed src={pdfURL} type='application/pdf' width={100 + '%'} height={100 + '%'} />
-                                        {/* <div className='pdfNotShow' onClick={() => setPdfShow((prev) => !prev)}>
-                                            <RxCross2 />
-                                        </div> */}
                                     </div>
                                 </div>
                             )}
