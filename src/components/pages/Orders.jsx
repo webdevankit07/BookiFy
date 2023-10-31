@@ -49,9 +49,9 @@ const Orders = () => {
     ) : (
         <>
             <div className='container'>
-                <h1 className='text-center mt-3'>Orders</h1>
+                <h1 className='text-center mt-3'>My Book List</h1>
                 {myOrders.map((order) => {
-                    const { name, BookId, qty, imageURL, userName, userEmail, userId, userPhotoURL, Price, ownerName } = order;
+                    const { name, BookId, imageURL, userName, userEmail, userId, userPhotoURL, Price, ownerName } = order;
 
                     return (
                         <div key={BookId}>
@@ -59,7 +59,7 @@ const Orders = () => {
                                 name={name}
                                 id={BookId}
                                 getMyOrders={getMyOrders}
-                                qty={qty}
+                                // qty={qty}
                                 imageURL={imageURL}
                                 userName={userName}
                                 userEmail={userEmail}

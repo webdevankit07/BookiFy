@@ -10,7 +10,7 @@ const DetailsPage = () => {
     document.title = 'BookiFy - Book Details';
     const { login, userName, userEmail, userId } = useSelector((state) => state.firebaseApp);
     const [book, setBook] = useState(null);
-    const [qty, setQty] = useState(1);
+    // const [qty, setQty] = useState(1);
     const [imgUrl, setImgUrl] = useState(null);
     const [imgLoading, setImgLoading] = useState(false);
     const { BookId } = useParams();
@@ -43,22 +43,20 @@ const DetailsPage = () => {
 
     //! Place Order....
     const placeOrder = async () => {
-        if (qty > 0) {
-            await addDoc(collection(firestore, 'books', BookId, 'orders'), {
-                userName,
-                userId,
-                BookId,
-                userEmail,
-                userPhotoURL: book.userPhotoURL,
-                name: book.name,
-                ownerName: book.userName,
-                imageURL: imgUrl,
-                qty: Number(qty),
-                Price: book.price,
-            });
-            setQty('');
-            navigate('/book/mybooks');
-        }
+        await addDoc(collection(firestore, 'books', BookId, 'orders'), {
+            userName,
+            userId,
+            BookId,
+            userEmail,
+            userPhotoURL: book.userPhotoURL,
+            name: book.name,
+            ownerName: book.userName,
+            imageURL: imgUrl,
+            // qty: Number(qty),
+            Price: book.price,
+        });
+        // setQty('');
+        navigate('/book/mybooks');
     };
 
     // ! loading...
@@ -90,7 +88,7 @@ const DetailsPage = () => {
             <h2 className='my-2'>Owner Details</h2>
             <p className='mx-5'>Name: {book.userName}</p>
             <p className='mx-5'>Email: {book.userEmail}</p>
-            <div className='my-3'>
+            {/* <div className='my-3'>
                 <label className='form-label lable'>Enter Qty</label>
                 <input
                     required
@@ -102,9 +100,9 @@ const DetailsPage = () => {
                     autoComplete='off'
                     placeholder='Enter Qty'
                 />
-            </div>
+            </div> */}
             <button className='btn btn-success mt-3' onClick={placeOrder}>
-                Buy Now
+                Read Book
             </button>
         </div>
     );

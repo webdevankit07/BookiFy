@@ -39,7 +39,7 @@ const OrderCard = ({ name, id, qty, imageURL, userName, userEmail, userPhotoURL,
                         <p className='card-title'>Book Name: {name}</p>
                         <p className='card-title'>Name: {userName}</p>
                         <p className='card-title'>Email: {userEmail}</p>
-                        <p className='card-title'>Qty: {qty}</p>
+                        {/* <p className='card-title'>Qty: {qty}</p> */}
                         <p className='card-text' style={{ height: '0' }}>
                             This Book has a tittle <span>{`"${name}"`}</span> and its sold by <span>{`"${userName}"`}</span> and this books costs Rs.{' '}
                             <span>{price}</span>
