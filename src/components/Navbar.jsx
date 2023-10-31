@@ -75,7 +75,7 @@ const Navbar = () => {
                             )}
                         </ul>
                         <div className='action-section d-flex align-items-center gap-5'>
-                            {pageLocation === ('home-Page' || 'order-Page') && (
+                            {(pageLocation === 'home-Page' || pageLocation === 'order-Page') && (
                                 <div className='searchSection'>
                                     <input
                                         type='text'
