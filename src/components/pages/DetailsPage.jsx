@@ -10,8 +10,8 @@ const DetailsPage = () => {
     document.title = 'BookiFy - Book Details';
     const { login, userName, userEmail, userId } = useSelector((state) => state.firebaseApp);
     const [book, setBook] = useState(null);
-    // const [qty, setQty] = useState(1);
     const [imgUrl, setImgUrl] = useState(null);
+    const [pdfUrl, setPdfUrl] = useState(null);
     const [imgLoading, setImgLoading] = useState(false);
     const { BookId } = useParams();
     const navigate = useNavigate();
@@ -34,7 +34,9 @@ const DetailsPage = () => {
     const getImageUrl = async () => {
         setImgLoading(true);
         const imgUrl = await getDownloadURL(ref(storage, book.imageURL));
+        const pdfUrl = await getDownloadURL(ref(storage, book.pdfURL));
         setImgUrl(imgUrl);
+        setPdfUrl(pdfUrl);
         setImgLoading(false);
     };
     useEffect(() => {
@@ -52,10 +54,9 @@ const DetailsPage = () => {
             name: book.name,
             ownerName: book.userName,
             imageURL: imgUrl,
-            // qty: Number(qty),
+            pdfURL: pdfUrl,
             Price: book.price,
         });
-        // setQty('');
         navigate('/book/mybooks');
     };
 
@@ -88,19 +89,6 @@ const DetailsPage = () => {
             <h2 className='my-2'>Owner Details</h2>
             <p className='mx-5'>Name: {book.userName}</p>
             <p className='mx-5'>Email: {book.userEmail}</p>
-            {/* <div className='my-3'>
-                <label className='form-label lable'>Enter Qty</label>
-                <input
-                    required
-                    type='number'
-                    className='form-control w-25'
-                    name='name'
-                    value={qty}
-                    onChange={(e) => setQty(e.target.value)}
-                    autoComplete='off'
-                    placeholder='Enter Qty'
-                />
-            </div> */}
             <button className='btn btn-success mt-3' onClick={placeOrder}>
                 Read Book
             </button>

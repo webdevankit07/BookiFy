@@ -8,8 +8,8 @@ import { ref, uploadBytes } from 'firebase/storage';
 const List = () => {
     document.title = 'BookiFy - Listing';
     const { login, userName, userEmail, userId, userPhotoURL } = useSelector((state) => state.firebaseApp);
-    const [formData, setFormData] = useState({ name: '', price: '', isbnNumber: '', coverPic: '' });
-    const { name, price, isbnNumber, coverPic } = formData;
+    const [formData, setFormData] = useState({ name: '', price: '', isbnNumber: '', coverPic: '', bookPdf: '' });
+    const { name, price, isbnNumber, coverPic, bookPdf } = formData;
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -29,21 +29,23 @@ const List = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const uploadResult = await uploadBytes(ref(storage, `uploads/images/${Date.now()}-${coverPic.name}`), coverPic);
-        console.log(uploadResult);
+        const uploadImageResult = await uploadBytes(ref(storage, `uploads/images/${Date.now()}-${coverPic.name}`), coverPic);
+        const uploadPdfResult = await uploadBytes(ref(storage, `uploads/pdf/${Date.now()}-${bookPdf.name}`), bookPdf);
+        // console.log(uploadImageResult, uploadPdfResult);
         await addDoc(collection(firestore, 'books'), {
+            userName,
             name,
             price,
             isbnNumber,
-            imageURL: uploadResult.ref._location.path_,
-            userName,
+            imageURL: uploadImageResult.ref._location.path_,
+            pdfURL: uploadPdfResult.ref._location.path_,
             userId,
             userEmail,
             userPhotoURL,
         });
 
         //! reset Form
-        setFormData({ name: '', price: '', isbnNumber: '', coverPic: '' });
+        setFormData({ name: '', price: '', isbnNumber: '', coverPic: '', bookPdf: '' });
         navigate('/');
         console.log('submit');
     };
@@ -90,11 +92,21 @@ const List = () => {
                             />
                         </div>
                         <div className='mb-3'>
-                            <label className='form-label'>Files</label>
+                            <label className='form-label'>Books Cover Image</label>
                             <input
                                 type='file'
                                 className='form-control'
                                 name='coverPic'
+                                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.files[0] })}
+                                autoComplete='off'
+                            />
+                        </div>
+                        <div className='mb-3'>
+                            <label className='form-label'>Book File (pdf)</label>
+                            <input
+                                type='file'
+                                className='form-control'
+                                name='bookPdf'
                                 onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.files[0] })}
                                 autoComplete='off'
                             />

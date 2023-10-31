@@ -2,10 +2,10 @@ import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/fire
 import PropTypes from 'prop-types';
 import { firestore } from '../../store/firebaseSlice';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
-const OrderCard = ({ name, id, qty, imageURL, userName, userEmail, userPhotoURL, price, ownerName, getMyOrders }) => {
+const OrderCard = ({ name, id, imageURL, setPdfShow, userName, userEmail, userPhotoURL, price, ownerName, getMyOrders }) => {
     const { userId } = useSelector((state) => state.firebaseApp);
-    // const navi
 
     //! delete my orders from firestore...
     const deleteOrder = async () => {
@@ -26,27 +26,33 @@ const OrderCard = ({ name, id, qty, imageURL, userName, userEmail, userPhotoURL,
 
     return (
         <>
-            <div className='card order_card'>
-                <div className='p-2 d-flex align-items-center rounded-2'>
-                    <img src={imageURL} className='card-img-top orderCardPoster rounded' style={{ width: '400px', height: '250px' }} />
-                </div>
-                <div className='card-body orderCardPoster order_card-body'>
-                    <div style={{ margin: '20px 0' }}>
-                        <p className='card-title'>
-                            Book Owner: {ownerName}{' '}
-                            <img src={userPhotoURL} style={{ height: '30px', borderRadius: '50%', margin: '0 10px' }} className='ownerImg' />
-                        </p>
-                        <p className='card-title'>Book Name: {name}</p>
-                        <p className='card-title'>Name: {userName}</p>
-                        <p className='card-title'>Email: {userEmail}</p>
-                        {/* <p className='card-title'>Qty: {qty}</p> */}
-                        <p className='card-text' style={{ height: '0' }}>
-                            This Book has a tittle <span>{`"${name}"`}</span> and its sold by <span>{`"${userName}"`}</span> and this books costs Rs.{' '}
-                            <span>{price}</span>
-                        </p>
-                        <button className='btn btn-danger mt-3 px-10 py-2' onClick={deleteOrder}>
-                            Delete
-                        </button>
+            <div>
+                <div className='card order_card'>
+                    <div className='p-2 d-flex align-items-center rounded-2'>
+                        <img src={imageURL} className='card-img-top orderCardPoster rounded' style={{ width: '400px', height: '250px' }} />
+                    </div>
+                    <div className='card-body orderCardPoster order_card-body'>
+                        <div style={{ margin: '20px 0' }}>
+                            <p className='card-title'>
+                                Book Owner: {ownerName}{' '}
+                                <img src={userPhotoURL} style={{ height: '30px', borderRadius: '50%', margin: '0 10px' }} className='ownerImg' />
+                            </p>
+                            <p className='card-title'>Book Name: {name}</p>
+                            <p className='card-title'>Name: {userName}</p>
+                            <p className='card-title'>Email: {userEmail}</p>
+                            <p className='card-text' style={{ height: '0' }}>
+                                This Book has a tittle <span>{`"${name}"`}</span> and its sold by <span>{`"${userName}"`}</span> and this books costs
+                                Rs. <span>{price}</span>
+                            </p>
+                            <div className='mt-5'>
+                                <button className='btn btn-success px-10 py-2' onClick={() => setPdfShow((prev) => !prev)}>
+                                    Read
+                                </button>
+                                <button className='btn btn-danger mx-3 px-10 py-2' onClick={deleteOrder}>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

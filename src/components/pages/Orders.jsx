@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { cleanOrders, cleanSearchText, firestore, setOrders, setPageLocation } from '../../store/firebaseSlice';
 import OrderCard from './OrderCard';
+import { RxCross2 } from 'react-icons/rx';
 
 const Orders = () => {
     const { login, booksIDs, allOrders, userId, searchItem } = useSelector((state) => state.firebaseApp);
+    const [pdfShow, setPdfShow] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -51,7 +53,7 @@ const Orders = () => {
             <div className='container'>
                 <h1 className='text-center mt-3'>My Book List</h1>
                 {myOrders.map((order) => {
-                    const { name, BookId, imageURL, userName, userEmail, userId, userPhotoURL, Price, ownerName } = order;
+                    const { name, BookId, imageURL, pdfURL, userName, userEmail, userId, userPhotoURL, Price, ownerName } = order;
 
                     return (
                         <div key={BookId}>
@@ -59,8 +61,8 @@ const Orders = () => {
                                 name={name}
                                 id={BookId}
                                 getMyOrders={getMyOrders}
-                                // qty={qty}
                                 imageURL={imageURL}
+                                setPdfShow={setPdfShow}
                                 userName={userName}
                                 userEmail={userEmail}
                                 UserId={userId}
@@ -68,6 +70,16 @@ const Orders = () => {
                                 price={Price}
                                 ownerName={ownerName}
                             />
+                            {pdfShow && (
+                                <div className='pdfSection' onClick={() => setPdfShow((prev) => !prev)}>
+                                    <div className='pdf'>
+                                        <embed src={pdfURL} type='application/pdf' width={100 + '%'} height={100 + '%'} />
+                                        {/* <div className='pdfNotShow' onClick={() => setPdfShow((prev) => !prev)}>
+                                            <RxCross2 />
+                                        </div> */}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     );
                 })}
