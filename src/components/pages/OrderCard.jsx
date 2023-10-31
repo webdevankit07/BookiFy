@@ -11,7 +11,7 @@ const OrderCard = ({ name, id, imageURL, setPdfShow, userName, userEmail, userPh
     const deleteOrder = async () => {
         //! Querry collection of order from firestore...
         const collectionRef = collection(firestore, 'books', id, 'orders');
-        const q = query(collectionRef, where('userId', '==', userId));
+        const q = query(collectionRef, where('userEmail', '==', userEmail));
         const querySnapshot = await getDocs(q);
 
         //! finding document and delete...
