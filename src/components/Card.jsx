@@ -27,13 +27,17 @@ const Card = ({ id, book }) => {
         <div>
             <div className='card'>
                 <div className='p-1'>
-                    {imgLoading ? <img src={LoadingImg} className='card-img-top rounded' /> : <img src={url} className='card-img-top rounded' />}
+                    {imgLoading ? (
+                        <img src={LoadingImg} className='card-img-top rounded' />
+                    ) : (
+                        <img src={url} className='card-img-top rounded' />
+                    )}
                 </div>
                 <div className='card-body'>
                     <h5 className='card-title'>{name}</h5>
                     <p className='card-text'>
-                        This Book has a tittle <span>{`"${name}"`}</span> and its sold by <span>{`"${userName}"`}</span> and this books costs{' '}
-                        <span>Rs.{price}</span>
+                        This Book has a tittle <span>{`"${name}"`}</span> and its sold by{' '}
+                        <span>{`"${userName}"`}</span> and this books costs <span>Rs.{price}</span>
                     </p>
                     <Link to={login ? `/book/details/${id}` : '/login'} className='btn btn-primary'>
                         View Details

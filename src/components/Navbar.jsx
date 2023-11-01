@@ -1,13 +1,20 @@
 import { signOut } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { booksIDs_collections, firebaseAuth, setSearchItem, userData } from '../store/firebaseSlice';
+import {
+    booksIDs_collections,
+    firebaseAuth,
+    setSearchItem,
+    userData,
+} from '../store/firebaseSlice';
 import { BiSearch } from 'react-icons/bi';
 import bookifyLogo from '../assets/books.png';
 import userLogo from '../assets/user.png';
 
 const Navbar = () => {
-    const { userName, login, userPhotoURL, searchItem, pageLocation } = useSelector((state) => state.firebaseApp);
+    const { userName, login, userPhotoURL, searchItem, pageLocation } = useSelector(
+        (state) => state.firebaseApp
+    );
     const dispatch = useDispatch();
 
     //! LoggedOut Function..
@@ -26,12 +33,22 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='navbar navbar-expand-lg bg-body-tertiary' style={{ position: 'sticky', top: '0', zIndex: '9999' }} data-bs-theme='dark'>
+            <nav
+                className='navbar navbar-expand-lg bg-body-tertiary'
+                style={{ position: 'sticky', top: '0', zIndex: '9999' }}
+                data-bs-theme='dark'
+            >
                 <div className='container-fluid link'>
                     <Link to={'/'}>
-                        <div className='p-2 mr-3 gap-2' style={{ display: 'flex', alignItems: 'center' }}>
+                        <div
+                            className='p-2 mr-3 gap-2'
+                            style={{ display: 'flex', alignItems: 'center' }}
+                        >
                             {login ? (
-                                <img src={userPhotoURL || userLogo} style={{ borderRadius: '50%', margin: '0 10px', width: '40px' }} />
+                                <img
+                                    src={userPhotoURL || userLogo}
+                                    style={{ borderRadius: '50%', margin: '0 10px', width: '40px' }}
+                                />
                             ) : (
                                 <img src={bookifyLogo} style={{ width: '40px' }} />
                             )}
@@ -62,12 +79,20 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                     <li className='nav-item'>
-                                        <Link className='nav-link ' aria-current='page' to={'/book/list'}>
+                                        <Link
+                                            className='nav-link '
+                                            aria-current='page'
+                                            to={'/book/list'}
+                                        >
                                             Add Listing
                                         </Link>
                                     </li>
                                     <li className='nav-item'>
-                                        <Link className='nav-link ' aria-current='page' to={'/book/mybooks'}>
+                                        <Link
+                                            className='nav-link '
+                                            aria-current='page'
+                                            to={'/book/mybooks'}
+                                        >
                                             Your Books
                                         </Link>
                                     </li>
@@ -91,7 +116,11 @@ const Navbar = () => {
 
                             <div className='authSection'>
                                 <Link to={!login && '/login'}>
-                                    <button type='submit' className='actionBtn' onClick={login ? loggedOut : undefined}>
+                                    <button
+                                        type='submit'
+                                        className='actionBtn'
+                                        onClick={login ? loggedOut : undefined}
+                                    >
                                         {login ? 'Log out' : 'Log In'}
                                     </button>
                                 </Link>

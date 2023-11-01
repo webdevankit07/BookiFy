@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPageLocation, signInUserWithEmailPassword, signInWithGoogle } from '../../store/firebaseSlice';
+import {
+    setPageLocation,
+    signInUserWithEmailPassword,
+    signInWithGoogle,
+} from '../../store/firebaseSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import bgImg from '../../assets/bg_bookify.jpg';
 import { FcGoogle } from 'react-icons/fc';

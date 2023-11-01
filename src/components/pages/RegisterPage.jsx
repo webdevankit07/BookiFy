@@ -1,5 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { setPageLocation, signInWithGoogle, signUpUserWithEmailPassword } from '../../store/firebaseSlice';
+import {
+    setPageLocation,
+    signInWithGoogle,
+    signUpUserWithEmailPassword,
+} from '../../store/firebaseSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import bgImg from '../../assets/bg_bookify.jpg';
@@ -37,7 +41,13 @@ const RegisterPage = () => {
 
                         <form id='form' className='flex flex-col' onSubmit={handleSubmit}>
                             <label htmlFor='email'>Email address</label>
-                            <input type='email' id='email' className='form-control' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input
+                                type='email'
+                                id='email'
+                                className='form-control'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
                             <label htmlFor='password'>Password</label>
                             <input
                                 type='password'

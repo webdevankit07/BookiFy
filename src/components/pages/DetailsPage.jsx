@@ -64,7 +64,14 @@ const DetailsPage = () => {
     if (book === null) {
         return (
             <h1
-                style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3.5rem', color: '#777777' }}
+                style={{
+                    height: '80vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '3.5rem',
+                    color: '#777777',
+                }}
                 className='books_not_found'
             >
                 Details Loading...
@@ -77,9 +84,17 @@ const DetailsPage = () => {
             <h1 style={{ textTransform: 'uppercase', textAlign: 'center' }}>{book.name}</h1>
             <div className='my-3'>
                 {imgLoading === true ? (
-                    <img src={Loadingimg} style={{ width: '100%', height: '600px' }} className='card-img-top detailPoster rounded-3' />
+                    <img
+                        src={Loadingimg}
+                        style={{ width: '100%', height: '600px' }}
+                        className='card-img-top detailPoster rounded-3'
+                    />
                 ) : (
-                    <img src={imgUrl} style={{ width: '100%', height: '600px' }} className='card-img-top detailPoster rounded' />
+                    <img
+                        src={imgUrl}
+                        style={{ width: '100%', height: '600px' }}
+                        className='card-img-top detailPoster rounded'
+                    />
                 )}
             </div>
             <h2 className='my-2'>Details</h2>
