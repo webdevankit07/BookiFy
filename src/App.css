@@ -18,7 +18,8 @@
 .signUp-section {
     display: grid;
     place-items: center;
-    height: 95vh;
+    min-height: 95vh;
+    margin-top: -1.38rem;
     width: 100%;
     /* background: #0f0c29; */
     background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
@@ -121,6 +122,14 @@
     border-bottom-right-radius: 5px;
 }
 
+/*! Home page  */
+.homePage {
+    padding-top: 2rem;
+    min-height: 100vh;
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+}
+
 .link a {
     text-decoration: none;
 }
@@ -156,6 +165,7 @@
     border-radius: 5px;
     outline: none;
     border: none;
+    width: 400px;
 }
 
 .searchIcon {
@@ -166,7 +176,7 @@
 }
 
 .pdfSection {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -174,7 +184,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: black;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.list-Container form label {
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+.list-btn {
+    display: block;
+    width: 300px;
+    margin: 2rem auto;
 }
 
 .pdf {
@@ -185,19 +208,9 @@
     height: 90vh;
 }
 
-.pdfNotShow {
-    position: absolute;
-    font-size: 1.5rem;
-    font-weight: bold;
-    top: -0.5rem;
-    right: -1rem;
-    display: grid;
-    place-items: center;
-    background-color: #ff1919;
-    padding: 0.6rem;
-    border-radius: 50%;
-    color: white;
-    cursor: pointer;
+.pdfContainer {
+    width: 100%;
+    height: 100%;
 }
 
 @media screen and (width < 860px) {
@@ -227,5 +240,15 @@
         box-shadow: none;
         border: none;
         margin-top: 5rem;
+    }
+
+    /*! Listing Page  */
+    .list-Container form {
+        width: 90% !important;
+    }
+
+    .list-btn {
+        width: 100%;
+        font-size: 0.8rem;
     }
 }

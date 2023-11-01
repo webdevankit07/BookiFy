@@ -4,13 +4,23 @@
 
 .card-container {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 4rem;
+    gap: 3rem;
 }
 
 .card {
-    max-width: 350px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 3px 5px rgba(0, 0, 0, 0.23);
+    transition: all 0.1s linear;
 }
+
+.card:hover {
+    scale: 1.02;
+    transition: all 0.1s linear;
+}
+
 .order_card {
     display: flex;
     flex-direction: row;
@@ -20,14 +30,23 @@
 }
 
 .card img {
-    height: 300px;
+    height: 200px;
+}
+
+.card-title {
+    font-weight: bold;
 }
 
 .card-text {
-    height: 100px;
+    height: 80px;
 }
 .card-text span {
     font-weight: bold;
+}
+
+.detailBtn {
+    font-size: 1rem;
+    width: 100%;
 }
 
 .books_not_found {
@@ -49,12 +68,31 @@
 }
 
 /*! .........Details Page.....  */
-.detailSection > h2 {
-    margin-left: 1rem;
-    font-weight: 800;
+.detailPoster-container {
+    width: 85%;
+    margin: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 3px 5px rgba(0, 0, 0, 0.23);
+    border-radius: 1rem;
+    overflow: hidden;
 }
 
-.detailSection > p {
+.detailPoster {
+    height: 55vh;
+}
+
+.detail-container {
+    margin: 2rem 5rem;
+    display: flex;
+    gap: 10rem;
+}
+
+.detail-container h2 {
+    font-weight: bold;
+}
+
+.detail-container p {
+    margin-bottom: 0.4rem;
+    margin-left: 2rem;
     color: rgb(100, 100, 100);
 }
 
@@ -67,14 +105,20 @@
 }
 
 .detailSection button {
-    width: 300px;
+    width: 100%;
+    display: block;
+    margin: auto;
 }
 
 /*! .......OrderCard.........  */
 
 /*! Responsive  */
 @media screen and (max-width: 500px) {
-    .books_not_found {
+    .card-container {
+        justify-content: center;
+    }
+
+    .card-container .books_not_found {
         font-size: 1rem !important;
     }
 
@@ -83,9 +127,29 @@
         flex-direction: column;
         align-items: center;
     }
-    /* .card-img-top {
-        width: 350px !important;
-    } */
+
+    .card:hover {
+        scale: 1;
+        transition: all 0.1s linear;
+    }
+
+    .card img {
+        height: 200px;
+    }
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        height: 70px;
+        font-size: 0.9rem;
+    }
+
+    .detailBtn {
+        font-size: 0.7rem;
+        width: 100%;
+    }
+
     .order_card-body {
         width: 100%;
     }
@@ -95,18 +159,34 @@
         height: 250px !important;
     }
 
-    .detailSection > h2 {
-        font-size: 1rem;
-        margin-left: 1rem;
+    .detailPoster-container {
+        width: 100%;
     }
 
-    .detailSection > p {
+    .detail-container {
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .detail-container h2 {
         font-size: 0.8rem;
     }
 
-    .detailSection label,
-    .detailSection input,
-    .detailSection button {
+    .detail-container p {
+        font-size: 0.7rem;
+        margin-left: 1rem;
+        /* margin-bottom: 0.4rem; */
+    }
+
+    .detailSection > button {
+        width: 200px;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .detailSection > button {
         margin-left: 1rem;
     }
 

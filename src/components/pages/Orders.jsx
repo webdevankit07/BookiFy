@@ -2,12 +2,20 @@ import { collection, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { cleanOrders, cleanSearchText, firestore, setOrders, setPageLocation } from '../../store/firebaseSlice';
+import {
+    cleanOrders,
+    cleanSearchText,
+    firestore,
+    setOrders,
+    setPageLocation,
+} from '../../store/firebaseSlice';
 import OrderCard from './OrderCard';
 
 const Orders = () => {
-    const { login, booksIDs, allOrders, userId, searchItem } = useSelector((state) => state.firebaseApp);
-    const [pdfShow, setPdfShow] = useState(false);
+    const { login, booksIDs, allOrders, userId, searchItem } = useSelector(
+        (state) => state.firebaseApp
+    );
+    // const [pdfShow, setPdfShow] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -41,7 +49,11 @@ const Orders = () => {
         .filter((order) => order.userId === userId || order.userEmail)
         .filter(
             (order) =>
-                order.name.toLowerCase().split(' ').join('').includes(searchItem.toLowerCase().split(' ').join('')) ||
+                order.name
+                    .toLowerCase()
+                    .split(' ')
+                    .join('')
+                    .includes(searchItem.toLowerCase().split(' ').join('')) ||
                 order.name.toLowerCase().includes(searchItem.toLowerCase())
         );
 
@@ -52,7 +64,18 @@ const Orders = () => {
             <div className='container'>
                 <h1 className='text-center mt-3'>My Book List</h1>
                 {myOrders.map((order) => {
-                    const { name, BookId, imageURL, pdfURL, userName, userEmail, userId, userPhotoURL, Price, ownerName } = order;
+                    const {
+                        name,
+                        BookId,
+                        imageURL,
+                        pdfURL,
+                        userName,
+                        userEmail,
+                        userId,
+                        userPhotoURL,
+                        Price,
+                        ownerName,
+                    } = order;
 
                     return (
                         <div key={BookId}>
@@ -61,7 +84,9 @@ const Orders = () => {
                                 id={BookId}
                                 getMyOrders={getMyOrders}
                                 imageURL={imageURL}
-                                setPdfShow={setPdfShow}
+                                // setPdfShow={setPdfShow}
+                                // pdfShow={pdfShow}
+                                pdfURL={pdfURL}
                                 userName={userName}
                                 userEmail={userEmail}
                                 UserId={userId}
@@ -69,13 +94,6 @@ const Orders = () => {
                                 price={Price}
                                 ownerName={ownerName}
                             />
-                            {pdfShow && (
-                                <div className='pdfSection' onClick={() => setPdfShow((prev) => !prev)}>
-                                    <div className='pdf'>
-                                        <embed src={pdfURL} type='application/pdf' width={100 + '%'} height={100 + '%'} />
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     );
                 })}

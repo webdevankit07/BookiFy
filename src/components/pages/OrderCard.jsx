@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { firestore } from '../../store/firebaseSlice';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PdfView from '../PdfView';
 
-const OrderCard = ({ name, id, imageURL, setPdfShow, userName, userEmail, userPhotoURL, price, ownerName, getMyOrders }) => {
+const OrderCard = ({ name, id, imageURL, pdfURL, userName, userEmail, userPhotoURL, price, ownerName, getMyOrders }) => {
     const { userId } = useSelector((state) => state.firebaseApp);
+    const [pdfShow, setPdfShow] = useState();
 
     //! delete my orders from firestore...
     const deleteOrder = async () => {
@@ -35,7 +38,15 @@ const OrderCard = ({ name, id, imageURL, setPdfShow, userName, userEmail, userPh
                         <div style={{ margin: '20px 0' }}>
                             <p className='card-title'>
                                 Book Owner: {ownerName}{' '}
-                                <img src={userPhotoURL} style={{ height: '30px', borderRadius: '50%', margin: '0 10px' }} className='ownerImg' />
+                                <img
+                                    src={userPhotoURL}
+                                    style={{
+                                        height: '30px',
+                                        borderRadius: '50%',
+                                        margin: '0 10px',
+                                    }}
+                                    className='ownerImg'
+                                />
                             </p>
                             <p className='card-title'>Book Name: {name}</p>
                             <p className='card-title'>Name: {userName}</p>
@@ -55,6 +66,7 @@ const OrderCard = ({ name, id, imageURL, setPdfShow, userName, userEmail, userPh
                         </div>
                     </div>
                 </div>
+                {pdfShow && <PdfView pdfURL={pdfURL} setPdfShow={setPdfShow} />}
             </div>
         </>
     );

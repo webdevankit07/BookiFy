@@ -1,9 +1,4 @@
-import {
-    booksIDs_collections,
-    cleanSearchText,
-    firestore,
-    setPageLocation,
-} from '../../store/firebaseSlice';
+import { booksIDs_collections, cleanSearchText, firestore, setPageLocation } from '../../store/firebaseSlice';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { collection, getDocs } from 'firebase/firestore';
@@ -53,31 +48,24 @@ const Home = () => {
         );
 
     //! If User has not Listed any books...
-    if (books && books.length === 0)
-        return <h1 className='books_not_found'>Books Not Listed...</h1>;
+    if (books && books.length === 0) return <h1 className='books_not_found'>Books Not Listed...</h1>;
 
     return (
         books && (
             <>
-                <div className='container my-5 card-container home-page'>
-                    {books.map((book) => {
-                        return (
-                            (book
-                                .data()
-                                .name.toLowerCase()
-                                .split(' ')
-                                .join('')
-                                .includes(searchItem.toLowerCase().split(' ').join('')) ||
-                                book
-                                    .data()
-                                    .name.toLowerCase()
-                                    .includes(searchItem.toLowerCase())) && (
-                                <div key={book.id}>
-                                    <Card id={book.id} book={{ ...book.data() }} />
-                                </div>
-                            )
-                        );
-                    })}
+                <div className='homePage'>
+                    <div className='container card-container'>
+                        {books.map((book) => {
+                            return (
+                                (book.data().name.toLowerCase().split(' ').join('').includes(searchItem.toLowerCase().split(' ').join('')) ||
+                                    book.data().name.toLowerCase().includes(searchItem.toLowerCase())) && (
+                                    <div key={book.id}>
+                                        <Card id={book.id} book={{ ...book.data() }} />
+                                    </div>
+                                )
+                            );
+                        })}
+                    </div>
                 </div>
             </>
         )

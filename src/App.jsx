@@ -29,9 +29,7 @@ const App = () => {
             if (user) {
                 dispatch(
                     userData({
-                        name:
-                            user.displayName ||
-                            user.email.charAt(0).toUpperCase() + user.email.slice(1, -10),
+                        name: user.displayName || user.email.charAt(0).toUpperCase() + user.email.slice(1, -10),
                         email: user.email,
                         userId: user.uid,
                         photoURL: user.photoURL,

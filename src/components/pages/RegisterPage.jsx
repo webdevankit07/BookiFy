@@ -1,9 +1,5 @@
 import { useDispatch } from 'react-redux';
-import {
-    setPageLocation,
-    signInWithGoogle,
-    signUpUserWithEmailPassword,
-} from '../../store/firebaseSlice';
+import { setPageLocation, signInWithGoogle, signUpUserWithEmailPassword } from '../../store/firebaseSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import bgImg from '../../assets/bg_bookify.jpg';
@@ -47,6 +43,7 @@ const RegisterPage = () => {
                                 className='form-control'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                placeholder='you@example.com'
                             />
                             <label htmlFor='password'>Password</label>
                             <input
