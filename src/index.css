@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    column-gap: 3rem;
 }
 
 .card {
@@ -19,6 +19,10 @@
 .homePage .card:hover {
     scale: 1.02;
     transition: all 0.1s linear;
+}
+
+.homePage .card {
+    margin-bottom: 3rem;
 }
 
 .order_card {
