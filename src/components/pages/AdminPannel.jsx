@@ -47,6 +47,9 @@ const AdminPannel = () => {
         <Wrapper>
             <div className='admin-container'>
                 <div className='table-container'>
+                    <div className='adminPannelTitle'>
+                        <h3>Admin Pannel</h3>
+                    </div>
                     <div className='adminUpload'>
                         <h2>Book List</h2>
                         <button className='adminAddBook btn btn-primary' onClick={() => navigate('/book/list')}>
@@ -85,6 +88,11 @@ const AdminPannel = () => {
                             })}
                         </tbody>
                     </table>
+                    {myListedBooks.length === 0 && (
+                        <h1 className='books_not_found' style={{ height: '10vh', marginTop: '8rem' }}>
+                            Books Not Listed...
+                        </h1>
+                    )}
                 </div>
             </div>
         </Wrapper>
@@ -95,6 +103,19 @@ const Wrapper = styled.section`
     background-color: #12162b;
     min-height: 92.8vh;
     padding-top: 5rem;
+
+    .adminPannelTitle {
+        text-align: center;
+    }
+
+    .adminPannelTitle h3 {
+        display: inline-block;
+        background-color: #f51616;
+        color: white;
+        font-size: 1.3rem;
+        padding: 0.5rem 2rem;
+        border-radius: 4px;
+    }
 
     .table-container {
         width: 80%;
