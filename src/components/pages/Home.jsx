@@ -34,7 +34,7 @@ const Home = () => {
         return (
             <h1
                 style={{
-                    height: '80vh',
+                    height: '90vh',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
