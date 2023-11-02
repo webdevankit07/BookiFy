@@ -46,7 +46,9 @@ const Orders = () => {
         );
 
     return myOrders.length === 0 ? (
-        <h1 className='books_not_found'>No Books Available...</h1>
+        <h1 className='books_not_found' style={{ minHeight: '90vh' }}>
+            No Books Available...
+        </h1>
     ) : (
         <>
             <div className='container' style={{ minHeight: '90vh' }}>
