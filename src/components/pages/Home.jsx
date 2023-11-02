@@ -19,7 +19,7 @@ const Home = () => {
         listOfAllBooks();
         dispatch(cleanSearchText());
         dispatch(setPageLocation('home-Page'));
-    }, []);
+    }, [dispatch]);
 
     //! register all booksIDs in GlobleState..
     useEffect(() => {

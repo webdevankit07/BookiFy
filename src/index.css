@@ -16,7 +16,7 @@
     transition: all 0.1s linear;
 }
 
-.card:hover {
+.homePage .card:hover {
     scale: 1.02;
     transition: all 0.1s linear;
 }
@@ -67,50 +67,19 @@
     padding: 20px 0;
 }
 
-/*! .........Details Page.....  */
-.detailPoster-container {
-    width: 85%;
-    margin: auto;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 3px 5px rgba(0, 0, 0, 0.23);
-    border-radius: 1rem;
-    overflow: hidden;
+.nav-link {
+    color: rgb(194, 194, 194) !important;
+    transition: all 0.2s ease-in-out;
+}
+.nav-link:hover {
+    color: rgb(255, 255, 255) !important;
+    text-decoration: underline;
+    transition: all 0.2s ease-in-out;
 }
 
-.detailPoster {
-    height: 55vh;
+.bg-body-tertiary {
+    background-color: #1b213a !important;
 }
-
-.detail-container {
-    margin: 2rem 5rem;
-    display: flex;
-    gap: 10rem;
-}
-
-.detail-container h2 {
-    font-weight: bold;
-}
-
-.detail-container p {
-    margin-bottom: 0.4rem;
-    margin-left: 2rem;
-    color: rgb(100, 100, 100);
-}
-
-.detailSection label {
-    font-weight: bold;
-}
-
-.detailSection input {
-    width: 300px !important;
-}
-
-.detailSection button {
-    width: 100%;
-    display: block;
-    margin: auto;
-}
-
-/*! .......OrderCard.........  */
 
 /*! Responsive  */
 @media screen and (max-width: 500px) {
@@ -128,7 +97,7 @@
         align-items: center;
     }
 
-    .card:hover {
+    .homePage .card:hover {
         scale: 1;
         transition: all 0.1s linear;
     }
@@ -205,5 +174,9 @@
 
     .orderCardPoster p {
         font-size: 0.8rem;
+    }
+
+    .admin-pannel {
+        display: none;
     }
 }

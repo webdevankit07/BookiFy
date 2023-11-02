@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth, isLoggedIn, userData } from './store/firebaseSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //! css file
 import './App.css';
@@ -18,6 +18,9 @@ import List from './components/pages/List';
 import DetailsPage from './components/pages/DetailsPage';
 import Orders from './components/pages/Orders';
 import Error from './components/pages/Error';
+import BookUpdate from './components/pages/BookUpdate';
+import AdminPannel from './components/pages/AdminPannel';
+import Footer from './components/Footer';
 
 const App = () => {
     const [islogin, setisLogin] = useState(false);
@@ -38,7 +41,10 @@ const App = () => {
             }
         });
     }, [dispatch, islogin]);
-    dispatch(isLoggedIn(islogin));
+
+    useEffect(() => {
+        dispatch(isLoggedIn(islogin));
+    }, [dispatch, islogin]);
 
     return (
         <>
@@ -48,11 +54,14 @@ const App = () => {
                     <Route path='/' element={<Home />} />
                     <Route path='/register' element={<RegisterPage />} />
                     <Route path='/login' element={<Login />} />
-                    <Route path='/book/list' element={<List />} />
                     <Route path='/book/details/:BookId' element={<DetailsPage />} />
+                    <Route path='/book/list' element={<List />} />
+                    <Route path='/adminPannel' element={<AdminPannel />} />
+                    <Route path='/book/details/update/:BookId' element={<BookUpdate />} />
                     <Route path='/book/mybooks' element={<Orders />} />
                     <Route path='*' element={<Error />} />
                 </Routes>
+                <Footer />
             </Router>
         </>
     );

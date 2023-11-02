@@ -1,13 +1,10 @@
 import { collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
 import PropTypes from 'prop-types';
 import { firestore } from '../../store/firebaseSlice';
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PdfView from '../PdfView';
 
 const OrderCard = ({ name, id, imageURL, pdfURL, userName, userEmail, userPhotoURL, price, ownerName, getMyOrders }) => {
-    const { userId } = useSelector((state) => state.firebaseApp);
     const [pdfShow, setPdfShow] = useState();
 
     //! delete my orders from firestore...
@@ -82,6 +79,9 @@ OrderCard.propTypes = {
     userPhotoURL: PropTypes.string,
     price: PropTypes.number,
     ownerName: PropTypes.string,
+    id: PropTypes.string,
+    pdfURL: PropTypes.string,
+    getMyOrders: PropTypes.func,
 };
 
 export default OrderCard;

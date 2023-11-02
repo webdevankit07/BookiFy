@@ -125,7 +125,7 @@
 /*! Home page  */
 .homePage {
     padding-top: 2rem;
-    min-height: 100vh;
+    min-height: 90vh;
     background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
     background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
 }
@@ -196,8 +196,9 @@
 
 .list-btn {
     display: block;
-    width: 300px;
     margin: 2rem auto;
+    text-align: center;
+    padding: 0.5rem 5rem;
 }
 
 .pdf {
@@ -214,6 +215,9 @@
 }
 
 @media screen and (width < 860px) {
+    .homePage {
+        background: white;
+    }
     .register img {
         display: none;
     }
